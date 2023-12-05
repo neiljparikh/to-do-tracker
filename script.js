@@ -16,20 +16,38 @@ $(function () {
       // Compare the block hour with the current hour
       if (blockHour < currentHour) {
         timeBlock.classList.add('past');
-        timeBlock.removeClass('present future')
+        timeBlock.classList.remove('present', 'future');
       } else if (blockHour === currentHour) {
         timeBlock.classList.add('present');
-        timeBlock.removeClass('past future')
+        timeBlock.classList.remove('past', 'future');
       } else {
         timeBlock.classList.add('future');
-        timeBlock.removeClass('past present')
+        timeBlock.classList.remove('past', 'present');
       }
     }); 
   }
 
   // Call the timeblockColoring function
   timeblockColoring();
+
+  function saveClick(event) {
+    var timeBlock = event.target.closest('.time-block');
+    if (timeBlock) {
+      var hourId = timeBlock.id;
+      var userInput = timeBlock.querySelector('.description').value;
+
+      // Save to local storage using the hourId as the key
+      localStorage.setItem(hourId, userInput);
+    }
+  }
+
+  // Add click event listener to all save buttons
+  var saveButtons = document.querySelectorAll('.saveBtn');
+  saveButtons.forEach(function (saveButton) {
+    saveButton.addEventListener('click', saveClick);
+  });
 });
+
 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in

@@ -1,6 +1,6 @@
 $(function () {
 
-  renderToDo();
+  renderToDo()
 
   var currentDay = dayjs().format('dddd');
   var dateContainer = document.getElementById('currentDay');
@@ -49,10 +49,12 @@ $(function () {
 
     for (var i = 9; i <= 17; i++) {
 
-    }
+    
     var hourId = 'hour-' + i;
+    console.log(hourId)
     var div = document.getElementById(hourId)
     var textarea = div.children[1]
+    }
   }
 
   // Add click event listener to all save buttons

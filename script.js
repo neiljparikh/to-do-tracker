@@ -1,4 +1,7 @@
 $(function () {
+
+  renderToDo();
+
   var currentDay = dayjs().format('dddd');
   var dateContainer = document.getElementById('currentDay');
   
@@ -31,20 +34,31 @@ $(function () {
   timeblockColoring();
 
   function saveClick(event) {
-    var timeBlock = event.target.closest('.time-block');
+    var timeBlock = event.target.previousElementSibling
+    console.log(timeBlock)
     if (timeBlock) {
       var hourId = timeBlock.id;
-      var userInput = timeBlock.querySelector('.description').value;
+      var userInput = timeBlock.value;
 
       // Save to local storage using the hourId as the key
       localStorage.setItem(hourId, userInput);
     }
   }
 
+  function renderToDo() {
+
+    for (var i = 9; i <= 17; i++) {
+
+    }
+    var hourId = 'hour-' + i;
+    var div = document.getElementById(hourId)
+    var textarea = div.children[1]
+  }
+
   // Add click event listener to all save buttons
   var saveButtons = document.querySelectorAll('.saveBtn');
-  saveButtons.forEach(function (saveButton) {
-    saveButton.addEventListener('click', saveClick);
+  saveButtons.forEach(function (event) {
+    event.addEventListener('click', saveClick);
   });
 });
 

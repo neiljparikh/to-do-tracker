@@ -52,8 +52,17 @@ $(function () {
     
     var hourId = 'hour-' + i;
     console.log(hourId)
+    
     var div = document.getElementById(hourId)
     var textarea = div.children[1]
+
+     // Retrieve saved to-do from local storage using the hourId as the key
+    var savedToDo = localStorage.getItem(hourId);
+
+     // Update the textarea with the retrieved to-do
+     if (savedToDo) {
+       textarea.value = savedToDo;
+     }
     }
   }
 

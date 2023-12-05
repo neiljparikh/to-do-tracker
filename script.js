@@ -1,6 +1,6 @@
 $(function () {
   var currentDay = dayjs().format('dddd');
-  var dateContainer = document.getElementById('current-day');
+  var dateContainer = document.getElementById('currentDay');
   
   dateContainer.textContent = 'Today is ' + currentDay;
 
@@ -16,10 +16,13 @@ $(function () {
       // Compare the block hour with the current hour
       if (blockHour < currentHour) {
         timeBlock.classList.add('past');
+        timeBlock.removeClass('present future')
       } else if (blockHour === currentHour) {
         timeBlock.classList.add('present');
+        timeBlock.removeClass('past future')
       } else {
         timeBlock.classList.add('future');
+        timeBlock.removeClass('past present')
       }
     }); 
   }

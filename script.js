@@ -1,11 +1,33 @@
-
 $(function () {
   var currentDay = dayjs().format('dddd');
   var dateContainer = document.getElementById('current-day');
   
   dateContainer.textContent = 'Today is ' + currentDay;
 
+  function timeblockColoring() {
+    var currentHour = dayjs().hour();
+
+    // Iterate through time blocks
+    var timeBlocks = document.querySelectorAll('.time-block');
+    timeBlocks.forEach(function (timeBlock) {
+      // Extract the hour from the time block's ID
+      var blockHour = parseInt(timeBlock.id.split('-')[1]);
+
+      // Compare the block hour with the current hour
+      if (blockHour < currentHour) {
+        timeBlock.classList.add('past');
+      } else if (blockHour === currentHour) {
+        timeBlock.classList.add('present');
+      } else {
+        timeBlock.classList.add('future');
+      }
+    }); // Add the missing closing parenthesis here
+  }
+
+  // Call the timeblockColoring function
+  timeblockColoring();
 });
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener

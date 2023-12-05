@@ -21,7 +21,7 @@ $(function () {
       } else {
         timeBlock.classList.add('future');
       }
-    }); // Add the missing closing parenthesis here
+    }); 
   }
 
   // Call the timeblockColoring function
